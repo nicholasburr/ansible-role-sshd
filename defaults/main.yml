@@ -14,6 +14,6 @@ sshd_fail2ban_port: {{ sshd_port }}
 sshd_fail2ban_action: iptables-multiport
 sshd_fail2ban_bantime: -1
 sshd_fail2ban_maxretry: 3
-sshd_fail2ban_logpath: %(sshd_log)s
-sshd_fail2ban_backend: %(sshd_backend)s
-sshd_fail2ban_selinix_logpth: %(auditd_log)s
+sshd_fail2ban_logpath: '%(sshd_log)s'
+sshd_fail2ban_backend: '%(sshd_backend)s'
+sshd_fail2ban_selinix_logpth: '%(auditd_log)s'
