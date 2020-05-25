@@ -3,3 +3,8 @@
   systemd:
     name: sshd
     state: restarted
+
+- name: restart_fail2ban
+  systemd:
+    name: fail2ban
+    state: restarted

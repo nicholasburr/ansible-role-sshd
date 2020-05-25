@@ -22,6 +22,7 @@
     group: root
   loop:
     - sshd.local
+  notify: restart_fail2ban
 
 - name: configure sshd
   lineinfile:
