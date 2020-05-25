@@ -1,0 +1,16 @@
+---
+sshd_port: 22
+sshd_password_authentication: "no"
+sshd_permit_root_login: "no"
+sshd_usedns: "no"
+sshd_permit_empty_password: "no"
+sshd_challenge_response_auth: "no"
+sshd_gss_api_authentication: "no"
+sshd_x11_forwarding: "no"
+
+sshd_fail2ban_mode: aggressive
+sshd_fail2ban_filter: sshd[mode=aggressive]
+sshd_fail2ban_port: {{ sshd_port }}
+sshd_fail2ban_logpath: %(sshd_log)s
+sshd_fail2ban_backend: %(sshd_backend)s
+sshd_fail2ban_selinix_logpth: %(auditd_log)s

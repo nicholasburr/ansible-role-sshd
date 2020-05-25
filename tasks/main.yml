@@ -1,0 +1,49 @@
+---
+- name: install fail2ban
+  apt:
+    name: fail2ban
+    state: present
+
+- name: enable sevices
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - sshd
+    - fail2ban
+
+- name: configure fail2ban
+  template:
+    src: "{{ item }}"
+    dest: "/etc/fail2ban/jail.d/{{ item }}"
+    mode: 0644
+    owner: root
+    group: root
+  loop:
+    - sshd.local
+
+- name: configure sshd
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items:
+    - regexp: "^PasswordAuthentication"
+      line: "PasswordAuthentication {{ sshd_password_authentication }}"
+    - regexp: "^PermitRootLogin"
+      line: "PermitRootLogin {{ sshd_permit_root_login }}"
+    - regexp: "^Port"
+      line: "Port {{ sshd_port }}"
+    - regexp: "^UseDNS"
+      line: "UseDNS {{ sshd_usedns }}"
+    - regexp: "^PermitEmptyPasswords"
+      line: "PermitEmptyPasswords {{ sshd_permit_empty_password }}"
+    - regexp: "^ChallengeResponseAuthentication"
+      line: "ChallengeResponseAuthentication {{ sshd_challenge_response_auth }}"
+    - regexp: "^GSSAPIAuthentication"
+      line: "GSSAPIAuthentication {{ sshd_gss_api_authentication }}"
+    - regexp: "^X11Forwarding"
+      line: "X11Forwarding {{ sshd_x11_forwarding }}"
+  notify: restart_sshd

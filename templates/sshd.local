@@ -1,0 +1,14 @@
+[sshd]
+# To use more aggressive sshd modes set filter parameter "mode" in jail.local:
+# normal (default), ddos, extra or aggressive (combines all).
+# See "tests/files/logs/sshd" or "filter.d/sshd.conf" for usage example and details.
+enabled   = true
+mode      = {{ sshd_fail2ban_mode }}
+filter    = {{ sshd_fail2ban_filer }}
+port      = {{ sshd_fail2ban_port }}
+logpath   = {{ sshd_fail2ban_logpath }}
+backend   = {{ sshd_fail2ban_backend }}
+
+[selinux-ssh]
+port      = ssh {{ sshd_fail2ban_port }}
+logpath   =  {{ sshd_fail2ban_selinux_logpath }}
