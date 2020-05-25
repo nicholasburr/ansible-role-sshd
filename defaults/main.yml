@@ -9,7 +9,7 @@ sshd_gss_api_authentication: "no"
 sshd_x11_forwarding: "no"
 
 sshd_fail2ban_mode: aggressive
-sshd_fail2ban_filter: sshd[mode=aggressive]
+sshd_fail2ban_filter: 'sshd[mode=aggressive]'
 sshd_fail2ban_port: {{ sshd_port }}
 sshd_fail2ban_action: iptables-multiport
 sshd_fail2ban_bantime: -1
