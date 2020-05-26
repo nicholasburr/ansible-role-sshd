@@ -1,3 +1,5 @@
+![Ansible Lint](https://github.com/nicholasburr/ansible-role-sshd/workflows/Ansible%20Lint/badge.svg?event=push)
+
 Role Name
 =========
 
