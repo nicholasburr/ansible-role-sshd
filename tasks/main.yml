@@ -48,3 +48,5 @@
     - regexp: "^X11Forwarding"
       line: "X11Forwarding {{ sshd_x11_forwarding }}"
   notify: restart_sshd
+
+- meta: flush_handlers
